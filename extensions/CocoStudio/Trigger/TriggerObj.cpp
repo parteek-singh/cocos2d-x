@@ -29,19 +29,36 @@ void TriggerCode::release()
 {
 }
 
-bool TriggerCode::onChackCondition()
+bool TriggerCode::onCheck()
 {
-	return true;
+    bool bRet =false;
+    for (std::vector<BaseTriggerCondition*>::iterator iter = _conVec.begin(); iter != _conVec.end(); ++iter)
+    {
+        bRet = bRet && (*iter)->check();
+    }
+	return bRet;
 }
 
-bool TriggerCode::onChackTrigger()
+void TriggerCode::onDeal()
 {
-	return true;
+    for (std::vector<BaseTriggerAction*>::iterator iter = _actVec.begin(); iter != _actVec.end(); ++iter)
+    {
+        (*iter)->deal();
+    }
 }
 
-
-void TriggerCode::onDoOccurrence()
+TriggerCode* TriggerCode::create(void)
 {
+    TriggerCode * pRet = new TriggerCode();
+    if (pRet != NULL)
+    {
+        pRet->autorelease();
+    }
+    else
+    {
+        CC_SAFE_DELETE(pRet);
+    }
+	return pRet;
 }
 
 

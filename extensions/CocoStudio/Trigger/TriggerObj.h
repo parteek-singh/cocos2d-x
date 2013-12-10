@@ -28,42 +28,35 @@ THE SOFTWARE.
 #include "cocos2d.h"
 #include "cocos-ext.h"
 #include "ExtensionMacros.h"
-#include "TriggerCondition.h"
+#include "TriggerBase.h"
 #include <vector>
 
 NS_CC_EXT_BEGIN
 
 class TriggerCode : CCObject
 {
-	
-public:
-	std::vector<BaseTriggerElement*>    m_ConditionVec;
-	std::vector<BaseTriggerElement*>    m_TriggerVec;
-    std::vector<BaseTriggerElement*>    m_OccurrenceVec;
-
-
-	bool    m_bChackConditionEnable;
-	bool    m_bChackTriggerEnable;
+private:
+    std::vector<BaseTriggerEvent*>      _eventVec;
+	std::vector<BaseTriggerCondition*>  _conVec;
+    std::vector<BaseTriggerAction*>     _actVec;
     
 public:
+    static TriggerCode* create(void);
+    bool onCheck();
+	void onDeal();
+	void release();
+    
 	TriggerCode()
-        :m_bChackConditionEnable(false)
-		,m_bChackTriggerEnable(false)
 	{
-		m_ConditionVec.clear();
-		m_OccurrenceVec.clear();
+        _eventVec.clear();
+		_conVec.clear();
+		_actVec.clear();
 	}
 
 	virtual ~TriggerCode()
 	{
 		release();
 	}
-    
-	bool onChackCondition();
-	bool onChackTrigger();
-	void onDoOccurrence();
-	void release();
- 
 };
 
 NS_CC_EXT_END

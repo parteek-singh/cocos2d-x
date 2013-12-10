@@ -12,6 +12,7 @@
 #include "CocoStudioSceneTest/SceneEditorTest.h"
 #include "CocoStudioGUITest/CocosGUIScene.h"
 #include "CocoStudioGUITest/UISceneManager.h"
+#include "CocoStudioTriggerTest/TriggerTest.h"
 
 #if (CC_TARGET_PLATFORM == CC_PLATFORM_IOS) || (CC_TARGET_PLATFORM == CC_PLATFORM_ANDROID) || (CC_TARGET_PLATFORM == CC_PLATFORM_WIN32)
 #include "NetworkTest/WebSocketTest.h"
@@ -44,6 +45,7 @@ enum
 	TEST_ARMATURE,
     TEST_SCENEEDITOR,
     TEST_COCOSGUI,
+    TEST_TRIGGER,
     TEST_MAX_COUNT,
 };
 
@@ -65,7 +67,8 @@ static const std::string testsName[TEST_MAX_COUNT] =
     "CocoStudioComponentsTest",
 	"CocoStudioArmatureTest",
     "CocoStudioSceneTest",
-    "CocoStudioGUITest"
+    "CocoStudioGUITest",
+    "CocoStudioTriggerTest"
 };
 
 ////////////////////////////////////////////////////////
@@ -173,18 +176,19 @@ void ExtensionsMainLayer::menuCallback(CCObject* pSender)
        {
             runSceneEditorTestLayer();
        }
-            break;
-        case TEST_COCOSGUI:
-        {
-			/*UISceneManager* pManager = UISceneManager::sharedUISceneManager();
-			CCScene* pScene = pManager->currentUIScene();
-			CCDirector::sharedDirector()->replaceScene(pScene);*/ 
-
-			CocosGUITestScene *pScene = new CocosGUITestScene();
+       break;
+    case TEST_COCOSGUI:
+      {
+            CocosGUITestScene *pScene = new CocosGUITestScene();
 			pScene->runThisTest();
 			pScene->release();
-		}
-            break;
+      }
+      break;
+    case TEST_TRIGGER:
+      {
+            runTriggerTestLayer();
+      }
+      break;
     default:
         break;
     }

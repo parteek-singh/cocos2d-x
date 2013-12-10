@@ -25,32 +25,39 @@ THE SOFTWARE.
 #ifndef __TRIGGEREVENT_H__
 #define __TRIGGEREVENT_H__
 
+#include "cocos2d.h"
+#include "cocos-ext.h"
+#include "ExtensionMacros.h"
+
 NS_CC_EXT_BEGIN
 
-enum TriggerEvent
+class BaseTriggerCondition : CCObject
 {
-	TriggerEvent_Invalide = -1,
-	TriggerEvent_EnterGame,
-	TriggerEvent_LeaveGame,
-	TriggerEvent_Repair,
-	TriggerEvent_relive,
-	TriggerEvent_Uav,
-	TriggerEvent_Landmine,
-	TriggerEvent_Placemine
+public:
+    BaseTriggerCondition()
+	{}
+
+	virtual ~BaseTriggerCondition()
+	{}
+
+    virtual bool check() = 0;
+	virtual void serialize(rapidjson::Value &val) = 0;
 };
 
-enum TriggerCondition
+class BaseTriggerAction : CCObject
 {
-    
+public:
+    BaseTriggerAction()
+	{}
 
+	virtual ~BaseTriggerAction()
+	{}
 
-}
+    virtual void deal() = 0;
+	virtual void serialize(rapidjson::Value &val) = 0;
+};
 
-enum TriggerAction
-{
-
-
-}
+void sendEvent(unsigned int event);
 
 NS_CC_EXT_END
 

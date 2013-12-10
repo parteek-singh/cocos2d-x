@@ -255,8 +255,9 @@
 		1D60589F0D05DD5A006BFB54 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1D30AB110D05D00D00671497 /* Foundation.framework */; };
 		1DF5F4E00D08C38300B7A737 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1DF5F4DF0D08C38300B7A737 /* UIKit.framework */; };
 		288765A50DF7441C002DB57D /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 288765A40DF7441C002DB57D /* CoreGraphics.framework */; };
+		370DF13D1857453B00DBEF31 /* TriggerBase.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 370DF13B1857453B00DBEF31 /* TriggerBase.cpp */; };
+		370DF142185745EA00DBEF31 /* TriggerTest.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 370DF140185745EA00DBEF31 /* TriggerTest.cpp */; };
 		3734EFB7185058F30022B387 /* TriggerObj.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3734EFB5185058F30022B387 /* TriggerObj.cpp */; };
-		37BAB34E18506B4300AF024E /* TriggerCondition.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 37BAB34C18506B4300AF024E /* TriggerCondition.cpp */; };
 		37BB5BF417E89E9B002746B4 /* CCActionFrame.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 37BB5BEA17E89E9B002746B4 /* CCActionFrame.cpp */; };
 		37BB5BF517E89E9B002746B4 /* CCActionFrameEasing.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 37BB5BEC17E89E9B002746B4 /* CCActionFrameEasing.cpp */; };
 		37BB5BF617E89E9B002746B4 /* CCActionManager.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 37BB5BEE17E89E9B002746B4 /* CCActionManager.cpp */; };
@@ -971,7 +972,11 @@
 		288765A40DF7441C002DB57D /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
 		29B97316FDCFA39411CA2CEA /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = main.m; path = ../main.m; sourceTree = "<group>"; };
 		32CA4F630368D1EE00C91783 /* iphone_Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = iphone_Prefix.pch; path = ../iphone_Prefix.pch; sourceTree = "<group>"; };
-		3734EFAF185056D60022B387 /* TriggerEvent.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TriggerEvent.h; sourceTree = "<group>"; };
+		370DF13B1857453B00DBEF31 /* TriggerBase.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = TriggerBase.cpp; sourceTree = "<group>"; };
+		370DF13F185745EA00DBEF31 /* EventDef.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EventDef.h; sourceTree = "<group>"; };
+		370DF140185745EA00DBEF31 /* TriggerTest.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = TriggerTest.cpp; sourceTree = "<group>"; };
+		370DF141185745EA00DBEF31 /* TriggerTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TriggerTest.h; sourceTree = "<group>"; };
+		3734EFAF185056D60022B387 /* TriggerBase.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TriggerBase.h; sourceTree = "<group>"; };
 		3734EFB5185058F30022B387 /* TriggerObj.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = TriggerObj.cpp; sourceTree = "<group>"; };
 		3734EFB6185058F30022B387 /* TriggerObj.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TriggerObj.h; sourceTree = "<group>"; };
 		3751F70518458B7E00AC94F2 /* document.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = document.h; sourceTree = "<group>"; };
@@ -984,8 +989,6 @@
 		3751F70D18458B7E00AC94F2 /* reader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = reader.h; sourceTree = "<group>"; };
 		3751F70E18458B7E00AC94F2 /* stringbuffer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = stringbuffer.h; sourceTree = "<group>"; };
 		3751F70F18458B7E00AC94F2 /* writer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = writer.h; sourceTree = "<group>"; };
-		37BAB34C18506B4300AF024E /* TriggerCondition.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = TriggerCondition.cpp; sourceTree = "<group>"; };
-		37BAB34D18506B4300AF024E /* TriggerCondition.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TriggerCondition.h; sourceTree = "<group>"; };
 		37BB5BEA17E89E9B002746B4 /* CCActionFrame.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = CCActionFrame.cpp; sourceTree = "<group>"; };
 		37BB5BEB17E89E9B002746B4 /* CCActionFrame.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CCActionFrame.h; sourceTree = "<group>"; };
 		37BB5BEC17E89E9B002746B4 /* CCActionFrameEasing.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = CCActionFrameEasing.cpp; sourceTree = "<group>"; };
@@ -2052,6 +2055,7 @@
 		15AA9CBB15B7EC460033D6C2 /* ExtensionsTest */ = {
 			isa = PBXGroup;
 			children = (
+				370DF13E185745EA00DBEF31 /* CocoStudioTriggerTest */,
 				37CA1CA017D87AC700A649D0 /* CocoStudioArmatureTest */,
 				37CA1CA317D87AC700A649D0 /* CocoStudioComponentsTest */,
 				37CA1CB017D87AC700A649D0 /* CocoStudioGUITest */,
@@ -2686,14 +2690,24 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		370DF13E185745EA00DBEF31 /* CocoStudioTriggerTest */ = {
+			isa = PBXGroup;
+			children = (
+				370DF13F185745EA00DBEF31 /* EventDef.h */,
+				370DF140185745EA00DBEF31 /* TriggerTest.cpp */,
+				370DF141185745EA00DBEF31 /* TriggerTest.h */,
+			);
+			name = CocoStudioTriggerTest;
+			path = ../../Classes/ExtensionsTest/CocoStudioTriggerTest;
+			sourceTree = "<group>";
+		};
 		3734EFA6185052CC0022B387 /* Trigger */ = {
 			isa = PBXGroup;
 			children = (
-				37BAB34C18506B4300AF024E /* TriggerCondition.cpp */,
-				37BAB34D18506B4300AF024E /* TriggerCondition.h */,
 				3734EFB5185058F30022B387 /* TriggerObj.cpp */,
 				3734EFB6185058F30022B387 /* TriggerObj.h */,
-				3734EFAF185056D60022B387 /* TriggerEvent.h */,
+				3734EFAF185056D60022B387 /* TriggerBase.h */,
+				370DF13B1857453B00DBEF31 /* TriggerBase.cpp */,
 			);
 			path = Trigger;
 			sourceTree = "<group>";
@@ -3438,7 +3452,6 @@
 				15AA9D6715B7EC460033D6C2 /* ClickAndMoveTest.cpp in Sources */,
 				15AA9D6815B7EC460033D6C2 /* CocosDenshionTest.cpp in Sources */,
 				15AA9D6915B7EC460033D6C2 /* controller.cpp in Sources */,
-				37BAB34E18506B4300AF024E /* TriggerCondition.cpp in Sources */,
 				15AA9D6A15B7EC460033D6C2 /* CurlTest.cpp in Sources */,
 				15AA9D6B15B7EC460033D6C2 /* CurrentLanguageTest.cpp in Sources */,
 				15AA9D6C15B7EC460033D6C2 /* DrawPrimitivesTest.cpp in Sources */,
@@ -3528,6 +3541,7 @@
 				15A3D9151682F7D5002FB0C5 /* b2World.cpp in Sources */,
 				15A3D9161682F7D5002FB0C5 /* b2WorldCallbacks.cpp in Sources */,
 				15A3D9171682F7D5002FB0C5 /* b2ChainAndCircleContact.cpp in Sources */,
+				370DF142185745EA00DBEF31 /* TriggerTest.cpp in Sources */,
 				15A3D9181682F7D5002FB0C5 /* b2ChainAndPolygonContact.cpp in Sources */,
 				15A3D9191682F7D5002FB0C5 /* b2CircleContact.cpp in Sources */,
 				15A3D91A1682F7D5002FB0C5 /* b2Contact.cpp in Sources */,
@@ -3666,6 +3680,7 @@
 				37CA1C2117D87A3300A649D0 /* CCDatas.cpp in Sources */,
 				37CA1C2217D87A3300A649D0 /* CCBatchNode.cpp in Sources */,
 				37CA1C2317D87A3300A649D0 /* CCDecorativeDisplay.cpp in Sources */,
+				370DF13D1857453B00DBEF31 /* TriggerBase.cpp in Sources */,
 				37CA1C2417D87A3300A649D0 /* CCDisplayFactory.cpp in Sources */,
 				37CA1C2517D87A3300A649D0 /* CCDisplayManager.cpp in Sources */,
 				37CA1C2617D87A3300A649D0 /* CCSkin.cpp in Sources */,
