@@ -1,5 +1,5 @@
 
-#include "actions.h"
+#include "acts.h"
 
 using namespace cocos2d;
 using namespace cocos2d::extension;
@@ -21,10 +21,12 @@ bool PlayMusic::init()
 
 void PlayMusic::done()
 {
+    CCLOG("PlayMusic::done");
 }
 
-void PlayMusic::serialize(rapidjson::Value &val)
+void PlayMusic::serialize(const rapidjson::Value &val)
 {
+    CCLOG("PlayMusic::serialize");
 }
 
 void PlayMusic::removeAll()

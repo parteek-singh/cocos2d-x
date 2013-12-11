@@ -66,37 +66,52 @@ void TriggerMng::parse(const char* pszFileName)
     rapidjson::Document jsonDict;
     do {
           CC_BREAK_IF(!readJson(pszFileName, jsonDict));
-          CCLOG("11111111111111111111");
+          int count = DICTOOL->getArrayCount_json(jsonDict, "triggers_data");
+          for (int i = 0; i < count; ++i)
+          {
+                const rapidjson::Value &subDict = DICTOOL->getSubDictionary_json(jsonDict, "triggers_data", i);
+                TriggerObj *obj = TriggerObj::create();
+                obj->serialize(subDict);
+                int event = DICTOOL->getIntValue_json(jsonDict, "eventId");
+                if (event < 0)
+                {
+                    continue;
+                }
+                add((unsigned int)(event), obj);
+          }
         
     } while (0);
 }
 
-TriggerObj* TriggerMng::get(unsigned int event) const
+CCArray* TriggerMng::get(unsigned int event) const
 {
-    TriggerObj* pRet = NULL;
+    CCArray* pRet = NULL;
     CCAssert(event >= 0, "Argument must be larger than 0");
     do {
         CC_BREAK_IF(NULL == _eventTriggers);
-        pRet = dynamic_cast<TriggerObj*>(_eventTriggers->objectForKey(event));
+        pRet = dynamic_cast<CCArray*>(_eventTriggers->objectForKey(event));
         
     } while (0);
     return pRet;
 }
 
-bool TriggerMng::add(unsigned int event, TriggerObj *obj)
+bool TriggerMng::add(unsigned int event, TriggerObj *pObj)
 {
     bool bRet = false;
-    CCAssert(obj != NULL, "Argument must be non-nil");
+    CCAssert(pObj != NULL, "Argument must be non-nil");
     do
     {
         if (_eventTriggers == NULL)
         {
             alloc();
         }
-        TriggerObj *pObj = dynamic_cast<TriggerObj*>(_eventTriggers->objectForKey(event));
-        CCAssert(pObj == NULL, "event already used. It can't be used again");
-        CC_BREAK_IF(pObj);
-        _eventTriggers->setObject(pObj, event);
+        CCArray *pArray = dynamic_cast<CCArray*>(_eventTriggers->objectForKey(event));
+        if (pArray == NULL)
+        {
+            pArray = CCArray::create();
+        }
+        pArray->addObject(pObj);
+        _eventTriggers->setObject(pArray, event);
         bRet = true;
     } while(0);
     return bRet;
@@ -110,7 +125,15 @@ void TriggerMng::removeAll(void)
         HASH_ITER(hh, _eventTriggers->m_pElements, pElement, tmp)
         {
             HASH_DEL(_eventTriggers->m_pElements, pElement);
-            ((TriggerObj*)pElement->getObject())->removeAll();
+            CCObject* pObj = NULL;
+            CCARRAY_FOREACH(((CCArray*)pElement->getObject()), pObj)
+            {
+                TriggerObj* triobj = dynamic_cast<TriggerObj*>(pObj);
+                if (triobj != NULL)
+                {
+                    triobj->removeAll();
+                }
+            }
             CC_SAFE_DELETE(pElement);
         }
     }
@@ -119,18 +142,25 @@ void TriggerMng::removeAll(void)
 bool TriggerMng::remove(unsigned int event)
 {
     bool bRet = false;
-    CCAssert(event > 0, "event must be larger than 0");
+    CCAssert(event >= 0, "event must be larger than 0");
     do 
     {        
         CC_BREAK_IF(!_eventTriggers);
         CCObject* pRetObject = NULL;
         pRetObject = _eventTriggers->objectForKey(event);
         CC_BREAK_IF(!pRetObject);
-        TriggerObj *obj = dynamic_cast<TriggerObj*>(pRetObject);
-        CC_BREAK_IF(!obj);
-        obj->removeAll();
+        CCArray *array = dynamic_cast<CCArray*>(pRetObject);
+        CC_BREAK_IF(!array);
+        CCObject* pObj = NULL;
+        CCARRAY_FOREACH(array, pObj)
+        {
+            TriggerObj* triobj = dynamic_cast<TriggerObj*>(pObj);
+            if (triobj != NULL)
+            {
+                triobj->removeAll();
+            }
+        }
         _eventTriggers->removeObjectForKey(event);
-        CC_SAFE_DELETE(obj);
         bRet = true;
     } while(0);
     return bRet;

@@ -22,11 +22,13 @@ bool InputConditon::init()
 
 bool InputConditon::check()
 {
+    CCLOG("InputConditon::check");
     return true;
 }
 
-void InputConditon::serialize(rapidjson::Value &val)
+void InputConditon::serialize(const rapidjson::Value &val)
 {
+    CCLOG("InputConditon::serialize");
 }
 
 void InputConditon::removeAll()

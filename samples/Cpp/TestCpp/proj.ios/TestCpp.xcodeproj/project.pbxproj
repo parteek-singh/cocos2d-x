@@ -260,8 +260,9 @@
 		3734EFB7185058F30022B387 /* TriggerObj.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3734EFB5185058F30022B387 /* TriggerObj.cpp */; };
 		37A326B118582F34008C5D20 /* TriggerMng.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 37A326AF18582F34008C5D20 /* TriggerMng.cpp */; };
 		37A326BB18585E3D008C5D20 /* ObjectFactory.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 37A326B918585E3D008C5D20 /* ObjectFactory.cpp */; };
-		37A326C018586E30008C5D20 /* actions.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 37A326BC18586E30008C5D20 /* actions.cpp */; };
+		37A326C018586E30008C5D20 /* acts.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 37A326BC18586E30008C5D20 /* acts.cpp */; };
 		37A326C118586E30008C5D20 /* cons.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 37A326BE18586E30008C5D20 /* cons.cpp */; };
+		37A326C81858FD71008C5D20 /* triggerTest.json in Resources */ = {isa = PBXBuildFile; fileRef = 37A326C71858FD71008C5D20 /* triggerTest.json */; };
 		37BB5BF417E89E9B002746B4 /* CCActionFrame.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 37BB5BEA17E89E9B002746B4 /* CCActionFrame.cpp */; };
 		37BB5BF517E89E9B002746B4 /* CCActionFrameEasing.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 37BB5BEC17E89E9B002746B4 /* CCActionFrameEasing.cpp */; };
 		37BB5BF617E89E9B002746B4 /* CCActionManager.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 37BB5BEE17E89E9B002746B4 /* CCActionManager.cpp */; };
@@ -997,10 +998,11 @@
 		37A326B018582F34008C5D20 /* TriggerMng.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TriggerMng.h; sourceTree = "<group>"; };
 		37A326B918585E3D008C5D20 /* ObjectFactory.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ObjectFactory.cpp; sourceTree = "<group>"; };
 		37A326BA18585E3D008C5D20 /* ObjectFactory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ObjectFactory.h; sourceTree = "<group>"; };
-		37A326BC18586E30008C5D20 /* actions.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = actions.cpp; sourceTree = "<group>"; };
-		37A326BD18586E30008C5D20 /* actions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = actions.h; sourceTree = "<group>"; };
+		37A326BC18586E30008C5D20 /* acts.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = acts.cpp; sourceTree = "<group>"; };
+		37A326BD18586E30008C5D20 /* acts.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = acts.h; sourceTree = "<group>"; };
 		37A326BE18586E30008C5D20 /* cons.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = cons.cpp; sourceTree = "<group>"; };
 		37A326BF18586E30008C5D20 /* cons.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = cons.h; sourceTree = "<group>"; };
+		37A326C71858FD71008C5D20 /* triggerTest.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = triggerTest.json; sourceTree = "<group>"; };
 		37BB5BEA17E89E9B002746B4 /* CCActionFrame.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = CCActionFrame.cpp; sourceTree = "<group>"; };
 		37BB5BEB17E89E9B002746B4 /* CCActionFrame.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CCActionFrame.h; sourceTree = "<group>"; };
 		37BB5BEC17E89E9B002746B4 /* CCActionFrameEasing.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = CCActionFrameEasing.cpp; sourceTree = "<group>"; };
@@ -2705,8 +2707,8 @@
 		370DF13E185745EA00DBEF31 /* CocoStudioTriggerTest */ = {
 			isa = PBXGroup;
 			children = (
-				37A326BC18586E30008C5D20 /* actions.cpp */,
-				37A326BD18586E30008C5D20 /* actions.h */,
+				37A326BC18586E30008C5D20 /* acts.cpp */,
+				37A326BD18586E30008C5D20 /* acts.h */,
 				37A326BE18586E30008C5D20 /* cons.cpp */,
 				37A326BF18586E30008C5D20 /* cons.h */,
 				370DF13F185745EA00DBEF31 /* EventDef.h */,
@@ -3270,6 +3272,7 @@
 		78C7DDAA14EBA5050085D0C2 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				37A326C71858FD71008C5D20 /* triggerTest.json */,
 				37CA1C5C17D87A5100A649D0 /* animations */,
 				37CA1C5D17D87A5100A649D0 /* app.icf */,
 				37CA1C5E17D87A5100A649D0 /* armature */,
@@ -3432,6 +3435,7 @@
 				37CA1C9A17D87A5100A649D0 /* pew-pew-lei.wav in Resources */,
 				37CA1C9B17D87A5100A649D0 /* scenetest in Resources */,
 				37CA1C9C17D87A5100A649D0 /* Shaders in Resources */,
+				37A326C81858FD71008C5D20 /* triggerTest.json in Resources */,
 				37CA1C9D17D87A5100A649D0 /* spine in Resources */,
 				37CA1C9E17D87A5100A649D0 /* TileMaps in Resources */,
 				37CA1C9F17D87A5100A649D0 /* zwoptex in Resources */,
@@ -3488,7 +3492,7 @@
 				15AA9D7715B7EC460033D6C2 /* CCControlSceneManager.cpp in Sources */,
 				15AA9D7815B7EC460033D6C2 /* CCControlSliderTest.cpp in Sources */,
 				15AA9D7915B7EC460033D6C2 /* CCControlSwitchTest.cpp in Sources */,
-				37A326C018586E30008C5D20 /* actions.cpp in Sources */,
+				37A326C018586E30008C5D20 /* acts.cpp in Sources */,
 				15AA9D7A15B7EC460033D6C2 /* ExtensionsTest.cpp in Sources */,
 				15AA9D7B15B7EC460033D6C2 /* NotificationCenterTest.cpp in Sources */,
 				15AA9D7C15B7EC460033D6C2 /* FontTest.cpp in Sources */,

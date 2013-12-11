@@ -83,5 +83,7 @@ void runTriggerTestLayer()
 {
     CCScene *pScene = TriggerTestLayer::scene();
     CCDirector::sharedDirector()->replaceScene(pScene);
+    sendEvent(TRIGGEREVENT_ENTERGAME);
+    TriggerMng::sharedTriggerMng()->remove(TRIGGEREVENT_ENTERGAME);
 }
 

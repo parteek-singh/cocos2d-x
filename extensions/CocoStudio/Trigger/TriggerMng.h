@@ -47,7 +47,7 @@ public:
 public:
 	void parse(const char* pszFileName);
 	void removeAll(void);
-	TriggerObj* get(unsigned int event) const;
+	CCArray* get(unsigned int event) const;
     bool add(unsigned int event, TriggerObj *pObj);
     bool remove(unsigned int event);
     bool isEmpty(void) const;

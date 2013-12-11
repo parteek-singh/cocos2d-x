@@ -42,7 +42,7 @@ public:
 	virtual ~BaseTriggerCondition(void);
     virtual bool init();
     virtual bool check();
-	virtual void serialize(rapidjson::Value &val);
+	virtual void serialize(const rapidjson::Value &val);
     virtual void removeAll();
 };
 
@@ -54,7 +54,7 @@ public:
 	virtual ~BaseTriggerAction(void);
     virtual bool init();
     virtual void done();
-	virtual void serialize(rapidjson::Value &val);
+	virtual void serialize(const rapidjson::Value &val);
     virtual void removeAll();
 };
 
@@ -70,7 +70,7 @@ public:
     virtual bool check();
     virtual void done();
     virtual void removeAll();
-    virtual void serialize(rapidjson::Value &val);
+    virtual void serialize(const rapidjson::Value &val);
   
 private:
     CCArray *_cons;

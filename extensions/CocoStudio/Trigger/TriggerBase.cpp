@@ -30,12 +30,17 @@ NS_CC_EXT_BEGIN
 
 void sendEvent(unsigned int event)
 {
-    TriggerObj *pObj = TriggerMng::sharedTriggerMng()->get(event);
+    CCArray *array = TriggerMng::sharedTriggerMng()->get(event);
     do {
-        CC_BREAK_IF(pObj != NULL);
-        if (pObj->check())
+        CC_BREAK_IF(array == NULL);
+        CCObject* pObj = NULL;
+        CCARRAY_FOREACH(array, pObj)
         {
-            pObj->done();
+            TriggerObj* triobj = dynamic_cast<TriggerObj*>(pObj);
+            if (triobj != NULL && triobj->check())
+            {
+                triobj->done();
+            }
         }
     } while (0);
 }

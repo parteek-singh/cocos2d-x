@@ -15,7 +15,7 @@ public:
 
      virtual bool init();
      virtual void done();
-	 virtual void serialize(rapidjson::Value &val);
+	 virtual void serialize(const rapidjson::Value &val);
      virtual void removeAll();
 };
 

@@ -1,4 +1,4 @@
-/****************************************************************************
+  /****************************************************************************
 Copyright (c) 2013 cocos2d-x.org
 
 http://www.cocos2d-x.org
@@ -43,7 +43,7 @@ bool BaseTriggerCondition::check()
     return true;
 }
 
-void BaseTriggerCondition::serialize(rapidjson::Value &val)
+void BaseTriggerCondition::serialize(const rapidjson::Value &val)
 {
 }
 
@@ -69,7 +69,7 @@ void BaseTriggerAction::done()
 
 }
 
-void BaseTriggerAction::serialize(rapidjson::Value &val)
+void BaseTriggerAction::serialize(const rapidjson::Value &val)
 {
 }
 
@@ -151,8 +151,8 @@ void TriggerObj::done()
     CCObject* pObj = NULL;
     CCARRAY_FOREACH(_acts, pObj)
     {
-        BaseTriggerAction* con = (BaseTriggerAction*)pObj;
-        con->done();
+        BaseTriggerAction *act = (BaseTriggerAction*)pObj;
+        act->done();
     }
 }
 
@@ -172,15 +172,48 @@ void TriggerObj::removeAll()
     {
         CCARRAY_FOREACH(_acts, pObj)
         {
-            BaseTriggerAction* con = (BaseTriggerAction*)pObj;
-            con->removeAll();
+            BaseTriggerAction* act = (BaseTriggerAction*)pObj;
+            act->removeAll();
         }
-        _cons->removeAllObjects();
+        _acts->removeAllObjects();
     }
 }
 
-void TriggerObj::serialize(rapidjson::Value &val)
+void TriggerObj::serialize(const rapidjson::Value &val)
 {
+    int count = DICTOOL->getArrayCount_json(val, "cons_data");
+    for (int i = 0; i < count; ++i)
+    {
+        const rapidjson::Value &subDict = DICTOOL->getSubDictionary_json(val, "cons_data", i);
+        const char *classname = DICTOOL->getStringValue_json(subDict, "classname");
+        if (classname == NULL)
+        {
+            continue;
+        }
+        BaseTriggerCondition *con = dynamic_cast<BaseTriggerCondition*>(ObjectFactory::sharedFactory()->createObject(classname));
+        CCAssert(con != NULL, "class named classname can not implement!");
+        con->init();
+        con->serialize(subDict);
+        con->autorelease();
+        _cons->addObject(con);
+    }
+    
+    count = DICTOOL->getArrayCount_json(val, "actions_data");
+    for (int i = 0; i < count; ++i)
+    {
+        const rapidjson::Value &subDict = DICTOOL->getSubDictionary_json(val, "actions_data", i);
+        const char *classname = DICTOOL->getStringValue_json(subDict, "classname");
+        if (classname == NULL)
+        {
+            continue;
+        }
+        BaseTriggerAction *act = dynamic_cast<BaseTriggerAction*>(ObjectFactory::sharedFactory()->createObject(classname));
+        CCAssert(act != NULL, "class named classname can not implement!");
+        act->init();
+        act->serialize(subDict);
+        act->autorelease();
+        _acts->addObject(act);
+    }
 }
 
 NS_CC_EXT_END
