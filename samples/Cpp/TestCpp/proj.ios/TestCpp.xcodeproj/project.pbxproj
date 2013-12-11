@@ -258,6 +258,10 @@
 		370DF13D1857453B00DBEF31 /* TriggerBase.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 370DF13B1857453B00DBEF31 /* TriggerBase.cpp */; };
 		370DF142185745EA00DBEF31 /* TriggerTest.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 370DF140185745EA00DBEF31 /* TriggerTest.cpp */; };
 		3734EFB7185058F30022B387 /* TriggerObj.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3734EFB5185058F30022B387 /* TriggerObj.cpp */; };
+		37A326B118582F34008C5D20 /* TriggerMng.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 37A326AF18582F34008C5D20 /* TriggerMng.cpp */; };
+		37A326BB18585E3D008C5D20 /* ObjectFactory.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 37A326B918585E3D008C5D20 /* ObjectFactory.cpp */; };
+		37A326C018586E30008C5D20 /* actions.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 37A326BC18586E30008C5D20 /* actions.cpp */; };
+		37A326C118586E30008C5D20 /* cons.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 37A326BE18586E30008C5D20 /* cons.cpp */; };
 		37BB5BF417E89E9B002746B4 /* CCActionFrame.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 37BB5BEA17E89E9B002746B4 /* CCActionFrame.cpp */; };
 		37BB5BF517E89E9B002746B4 /* CCActionFrameEasing.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 37BB5BEC17E89E9B002746B4 /* CCActionFrameEasing.cpp */; };
 		37BB5BF617E89E9B002746B4 /* CCActionManager.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 37BB5BEE17E89E9B002746B4 /* CCActionManager.cpp */; };
@@ -989,6 +993,14 @@
 		3751F70D18458B7E00AC94F2 /* reader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = reader.h; sourceTree = "<group>"; };
 		3751F70E18458B7E00AC94F2 /* stringbuffer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = stringbuffer.h; sourceTree = "<group>"; };
 		3751F70F18458B7E00AC94F2 /* writer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = writer.h; sourceTree = "<group>"; };
+		37A326AF18582F34008C5D20 /* TriggerMng.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = TriggerMng.cpp; sourceTree = "<group>"; };
+		37A326B018582F34008C5D20 /* TriggerMng.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TriggerMng.h; sourceTree = "<group>"; };
+		37A326B918585E3D008C5D20 /* ObjectFactory.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ObjectFactory.cpp; sourceTree = "<group>"; };
+		37A326BA18585E3D008C5D20 /* ObjectFactory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ObjectFactory.h; sourceTree = "<group>"; };
+		37A326BC18586E30008C5D20 /* actions.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = actions.cpp; sourceTree = "<group>"; };
+		37A326BD18586E30008C5D20 /* actions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = actions.h; sourceTree = "<group>"; };
+		37A326BE18586E30008C5D20 /* cons.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = cons.cpp; sourceTree = "<group>"; };
+		37A326BF18586E30008C5D20 /* cons.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = cons.h; sourceTree = "<group>"; };
 		37BB5BEA17E89E9B002746B4 /* CCActionFrame.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = CCActionFrame.cpp; sourceTree = "<group>"; };
 		37BB5BEB17E89E9B002746B4 /* CCActionFrame.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CCActionFrame.h; sourceTree = "<group>"; };
 		37BB5BEC17E89E9B002746B4 /* CCActionFrameEasing.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = CCActionFrameEasing.cpp; sourceTree = "<group>"; };
@@ -2693,6 +2705,10 @@
 		370DF13E185745EA00DBEF31 /* CocoStudioTriggerTest */ = {
 			isa = PBXGroup;
 			children = (
+				37A326BC18586E30008C5D20 /* actions.cpp */,
+				37A326BD18586E30008C5D20 /* actions.h */,
+				37A326BE18586E30008C5D20 /* cons.cpp */,
+				37A326BF18586E30008C5D20 /* cons.h */,
 				370DF13F185745EA00DBEF31 /* EventDef.h */,
 				370DF140185745EA00DBEF31 /* TriggerTest.cpp */,
 				370DF141185745EA00DBEF31 /* TriggerTest.h */,
@@ -2704,6 +2720,10 @@
 		3734EFA6185052CC0022B387 /* Trigger */ = {
 			isa = PBXGroup;
 			children = (
+				37A326B918585E3D008C5D20 /* ObjectFactory.cpp */,
+				37A326BA18585E3D008C5D20 /* ObjectFactory.h */,
+				37A326AF18582F34008C5D20 /* TriggerMng.cpp */,
+				37A326B018582F34008C5D20 /* TriggerMng.h */,
 				3734EFB5185058F30022B387 /* TriggerObj.cpp */,
 				3734EFB6185058F30022B387 /* TriggerObj.h */,
 				3734EFAF185056D60022B387 /* TriggerBase.h */,
@@ -3468,6 +3488,7 @@
 				15AA9D7715B7EC460033D6C2 /* CCControlSceneManager.cpp in Sources */,
 				15AA9D7815B7EC460033D6C2 /* CCControlSliderTest.cpp in Sources */,
 				15AA9D7915B7EC460033D6C2 /* CCControlSwitchTest.cpp in Sources */,
+				37A326C018586E30008C5D20 /* actions.cpp in Sources */,
 				15AA9D7A15B7EC460033D6C2 /* ExtensionsTest.cpp in Sources */,
 				15AA9D7B15B7EC460033D6C2 /* NotificationCenterTest.cpp in Sources */,
 				15AA9D7C15B7EC460033D6C2 /* FontTest.cpp in Sources */,
@@ -3495,6 +3516,7 @@
 				15AA9D9215B7EC460033D6C2 /* SpriteTest.cpp in Sources */,
 				15AA9D9315B7EC460033D6C2 /* testBasic.cpp in Sources */,
 				15AA9D9415B7EC460033D6C2 /* TextInputTest.cpp in Sources */,
+				37A326B118582F34008C5D20 /* TriggerMng.cpp in Sources */,
 				15AA9D9515B7EC460033D6C2 /* Texture2dTest.cpp in Sources */,
 				15AA9D9615B7EC460033D6C2 /* TextureCacheTest.cpp in Sources */,
 				15AA9D9715B7EC460033D6C2 /* TileMapTest.cpp in Sources */,
@@ -3651,6 +3673,7 @@
 				1A9FE96E17277E9D00B21905 /* Atlas.cpp in Sources */,
 				1A9FE96F17277E9D00B21905 /* AtlasAttachmentLoader.cpp in Sources */,
 				1A9FE97017277E9D00B21905 /* Attachment.cpp in Sources */,
+				37A326C118586E30008C5D20 /* cons.cpp in Sources */,
 				1A9FE97117277E9D00B21905 /* AttachmentLoader.cpp in Sources */,
 				1A9FE97217277E9D00B21905 /* Bone.cpp in Sources */,
 				1A9FE97317277E9D00B21905 /* BoneData.cpp in Sources */,
@@ -3671,6 +3694,7 @@
 				1AF5AE6317584196009C997A /* WebSocket.cpp in Sources */,
 				1AF5AE8E1758426A009C997A /* WebSocketTest.cpp in Sources */,
 				1A8F3B1A175DC64000049216 /* CCSkeleton.cpp in Sources */,
+				37A326BB18585E3D008C5D20 /* ObjectFactory.cpp in Sources */,
 				1A8F3B1B175DC64000049216 /* CCSkeletonAnimation.cpp in Sources */,
 				37CA1C1C17D87A3300A649D0 /* CCArmatureAnimation.cpp in Sources */,
 				37CA1C1D17D87A3300A649D0 /* CCProcessBase.cpp in Sources */,

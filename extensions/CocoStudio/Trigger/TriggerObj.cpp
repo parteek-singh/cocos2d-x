@@ -25,32 +25,86 @@ THE SOFTWARE.
 
 NS_CC_EXT_BEGIN
 
-void TriggerCode::release()
+BaseTriggerCondition::BaseTriggerCondition(void)
 {
 }
 
-bool TriggerCode::onCheck()
+BaseTriggerCondition::~BaseTriggerCondition(void)
 {
-    bool bRet =false;
-    for (std::vector<BaseTriggerCondition*>::iterator iter = _conVec.begin(); iter != _conVec.end(); ++iter)
-    {
-        bRet = bRet && (*iter)->check();
-    }
-	return bRet;
 }
 
-void TriggerCode::onDeal()
+bool BaseTriggerCondition::init()
 {
-    for (std::vector<BaseTriggerAction*>::iterator iter = _actVec.begin(); iter != _actVec.end(); ++iter)
-    {
-        (*iter)->deal();
-    }
+    return true;
 }
 
-TriggerCode* TriggerCode::create(void)
+bool BaseTriggerCondition::check()
 {
-    TriggerCode * pRet = new TriggerCode();
-    if (pRet != NULL)
+    return true;
+}
+
+void BaseTriggerCondition::serialize(rapidjson::Value &val)
+{
+}
+
+void BaseTriggerCondition::removeAll()
+{
+}
+
+BaseTriggerAction::BaseTriggerAction(void)
+{
+}
+
+BaseTriggerAction::~BaseTriggerAction(void)
+{
+}
+
+bool BaseTriggerAction::init()
+{
+    return true;
+}
+
+void BaseTriggerAction::done()
+{
+
+}
+
+void BaseTriggerAction::serialize(rapidjson::Value &val)
+{
+}
+
+void BaseTriggerAction::removeAll()
+{
+}
+
+TriggerObj::TriggerObj(void)
+:_cons(NULL)
+,_acts(NULL)
+{
+}
+
+TriggerObj::~TriggerObj(void)
+{
+}
+
+bool TriggerObj::init()
+{
+    bool bRet = false;
+    do {
+         _cons = CCArray::create();
+         _acts = CCArray::create();
+         CC_BREAK_IF(_cons == NULL || _acts == NULL);
+         _cons->retain();
+         _acts->retain();
+         bRet = true;
+    } while (0);
+    return bRet;
+}
+
+TriggerObj* TriggerObj::create()
+{
+    TriggerObj * pRet = new TriggerObj();
+    if (pRet && pRet->init())
     {
         pRet->autorelease();
     }
@@ -58,8 +112,75 @@ TriggerCode* TriggerCode::create(void)
     {
         CC_SAFE_DELETE(pRet);
     }
-	return pRet;
+    return pRet;
 }
 
+bool TriggerObj::check()
+{
+    bool bRet = true;
+    if (_cons == NULL)
+    {
+        return bRet;
+    }
+    if (_cons->count() == 0)
+    {
+        return bRet;
+    }
+    
+    CCObject* pObj = NULL;
+    CCARRAY_FOREACH(_cons, pObj)
+    {
+        BaseTriggerCondition* con = (BaseTriggerCondition*)pObj;
+        bRet = bRet && con->check();
+    }
+
+    return bRet;
+}
+
+void TriggerObj::done()
+{
+    if (_acts == NULL)
+    {
+        return;
+    }
+    if (_acts->count() == 0)
+    {
+        return;
+    }
+    
+    CCObject* pObj = NULL;
+    CCARRAY_FOREACH(_acts, pObj)
+    {
+        BaseTriggerAction* con = (BaseTriggerAction*)pObj;
+        con->done();
+    }
+}
+
+void TriggerObj::removeAll()
+{
+    CCObject* pObj = NULL;
+    if (_cons != NULL)
+    {
+        CCARRAY_FOREACH(_cons, pObj)
+        {
+            BaseTriggerCondition* con = (BaseTriggerCondition*)pObj;
+            con->removeAll();
+        }
+        _cons->removeAllObjects();
+    }
+    if (_acts != NULL)
+    {
+        CCARRAY_FOREACH(_acts, pObj)
+        {
+            BaseTriggerAction* con = (BaseTriggerAction*)pObj;
+            con->removeAll();
+        }
+        _cons->removeAllObjects();
+    }
+}
+
+void TriggerObj::serialize(rapidjson::Value &val)
+{
+}
 
 NS_CC_EXT_END

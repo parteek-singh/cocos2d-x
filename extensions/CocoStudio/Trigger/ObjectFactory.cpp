@@ -22,53 +22,78 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 THE SOFTWARE.
 ****************************************************************************/
 
-#ifndef __TRIGGERCONDITION_H__
-#define __TRIGGERCONDITION_H__
-
-#include "cocos2d.h"
-#include "cocos-ext.h"
-#include "ExtensionMacros.h"
-#include <vector>
+#include "ObjectFactory.h"
 
 NS_CC_EXT_BEGIN
 
-class BaseTriggerElement : CCObject
+TInfo::TInfo(void)
+:_class("")
+,_fun(NULL)
 {
-public:
-	BaseTriggerElement()
-	{
+}
 
-	}
-
-	virtual ~BaseTriggerElement()
-	{
-
-	}
-};
-
-class TriggerElement_Area : public BaseTriggerElement
+TInfo::TInfo(const std::string& type, Instance ins)
+:_class(type)
+,_fun(ins)
 {
-public:
-	enum ElementState_Area
-	{
-		ElementState_Area_Inside = 0,
-		ElementState_Area_Outside,
-	};
+    cocos2d::extension::ObjectFactory::sharedFactory()->registerType(*this);
+}
 
-	TriggerElement_Area()
-		:BaseTriggerElement()
-	{
-	}
+TInfo::TInfo(const TInfo &t)
+{
+    _class = t._class;
+    _fun = t._fun;
+}
 
-	virtual ~TriggerElement_Area()
-	{
+TInfo::~TInfo(void)
+{
+   _class = "";
+   _fun = NULL;
+}
 
-	}
+TInfo& TInfo::operator= (const TInfo &t)
+{
+    _class = t._class;
+    _fun = t._fun;
+    return *this;
+}
 
-	virtual void Serialize(void* arc);
-};
 
+ObjectFactory* ObjectFactory::_sharedFactory = NULL;
+
+ObjectFactory::ObjectFactory(void)
+{
+
+}
+
+ObjectFactory::~ObjectFactory(void)
+{
+
+}
+
+ObjectFactory* ObjectFactory::sharedFactory()
+{
+    if ( NULL == _sharedFactory)
+    {
+        _sharedFactory = new ObjectFactory();
+    }
+    return _sharedFactory;
+}
+
+void ObjectFactory::purgeFactory()
+{
+    CC_SAFE_DELETE(_sharedFactory);
+}
+
+CCObject* ObjectFactory::createObject(const char *name)
+{
+    const TInfo t = _typeMap[name];
+    CCObject *o = t._fun();
+    return o;
+}
+
+void ObjectFactory::registerType(const TInfo &t)
+{
+    _typeMap.insert(FactoryMap::value_type(t._class, t));
+}
 NS_CC_EXT_END
-
-
-#endif

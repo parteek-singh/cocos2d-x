@@ -65,7 +65,9 @@ cocos2d::CCNode* TriggerTestLayer::createGameScene()
         CCMenu *menuBack = CCMenu::create(itemBack, NULL);
         menuBack->setPosition(CCPointZero);
 		menuBack->setZOrder(4);
-
+    
+      TriggerMng::sharedTriggerMng()->parse("triggerTest.json");
+    
     return menuBack;
 }
 
@@ -81,6 +83,5 @@ void runTriggerTestLayer()
 {
     CCScene *pScene = TriggerTestLayer::scene();
     CCDirector::sharedDirector()->replaceScene(pScene);
-    sendEvent(TRIGGEREVENT_ENTERGAME);
 }
 

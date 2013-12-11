@@ -23,15 +23,21 @@ THE SOFTWARE.
 ****************************************************************************/
 
 #include "TriggerBase.h"
+#include "TriggerObj.h"
+#include "TriggerMng.h"
 
 NS_CC_EXT_BEGIN
 
 void sendEvent(unsigned int event)
 {
-
-
+    TriggerObj *pObj = TriggerMng::sharedTriggerMng()->get(event);
+    do {
+        CC_BREAK_IF(pObj != NULL);
+        if (pObj->check())
+        {
+            pObj->done();
+        }
+    } while (0);
 }
-
-
 
 NS_CC_EXT_END

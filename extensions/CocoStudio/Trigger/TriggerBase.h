@@ -28,34 +28,24 @@ THE SOFTWARE.
 #include "cocos2d.h"
 #include "cocos-ext.h"
 #include "ExtensionMacros.h"
+#include "TriggerObj.h"
+#include "ObjectFactory.h"
+#include "TriggerMng.h"
 
 NS_CC_EXT_BEGIN
 
-class BaseTriggerCondition : CCObject
-{
-public:
-    BaseTriggerCondition()
-	{}
+#define DECLARE_CLASS_INFO \
+    public: \
+        static cocos2d::extension::TInfo Type; \
+        static cocos2d::CCObject* createInstance(void); \
+        
+#define IMPLEMENT_CLASS_INFO(className) \
+        cocos2d::CCObject* className::createInstance(void) \
+        { \
+            return new className; \
+        } \
+        cocos2d::extension::TInfo className::Type(#className, &className::createInstance); \
 
-	virtual ~BaseTriggerCondition()
-	{}
-
-    virtual bool check() = 0;
-	virtual void serialize(rapidjson::Value &val) = 0;
-};
-
-class BaseTriggerAction : CCObject
-{
-public:
-    BaseTriggerAction()
-	{}
-
-	virtual ~BaseTriggerAction()
-	{}
-
-    virtual void deal() = 0;
-	virtual void serialize(rapidjson::Value &val) = 0;
-};
 
 void sendEvent(unsigned int event);
 

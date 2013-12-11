@@ -22,14 +22,45 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 THE SOFTWARE.
 ****************************************************************************/
 
-#include "TriggerCondition.h"
+#ifndef __TRIGGERMNG_H__
+#define __TRIGGERMNG_H__
 
+#include "cocos2d.h"
+#include "cocos-ext.h"
+#include "ExtensionMacros.h"
 
 NS_CC_EXT_BEGIN
 
-void TriggerElement_Area::Serialize(void *arc)
-{
+class TriggerObj;
 
-}
+class TriggerMng
+{
+public:
+	TriggerMng(void);
+	virtual ~TriggerMng(void);
+	
+public:
+    static TriggerMng* sharedTriggerMng();
+    static const char* triggerMngVersion();
+    void purgeTriggerMng();
+    
+public:
+	void parse(const char* pszFileName);
+	void removeAll(void);
+	TriggerObj* get(unsigned int event) const;
+    bool add(unsigned int event, TriggerObj *pObj);
+    bool remove(unsigned int event);
+    bool isEmpty(void) const;
+    
+private:
+    void alloc(void);
+    bool readJson(const char *pszFileName, rapidjson::Document &doc);
+private:
+    CCDictionary *_eventTriggers;
+    static TriggerMng *_sharedTriggerMng;
+};
+
 
 NS_CC_EXT_END
+
+#endif

@@ -22,63 +22,50 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 THE SOFTWARE.
 ****************************************************************************/
 
-#ifndef __TRIGGEROBJ_H__
-#define __TRIGGEROBJ_H__
+#ifndef __TRIGGERFACTORY_H__
+#define __TRIGGERFACTORY_H__
 
 #include "cocos2d.h"
 #include "cocos-ext.h"
 #include "ExtensionMacros.h"
-#include "TriggerBase.h"
-#include <vector>
+#include <string>
+#include <map>
 
 NS_CC_EXT_BEGIN
 
+typedef cocos2d::CCObject* (*Instance)(void);
 
-class BaseTriggerCondition : public CCObject
+struct TInfo
 {
-protected:
-    BaseTriggerCondition(void);
-public:
-	virtual ~BaseTriggerCondition(void);
-    virtual bool init();
-    virtual bool check();
-	virtual void serialize(rapidjson::Value &val);
-    virtual void removeAll();
-};
-
-class BaseTriggerAction : public CCObject
-{
-protected:
-    BaseTriggerAction(void);
-public:
-	virtual ~BaseTriggerAction(void);
-    virtual bool init();
-    virtual void done();
-	virtual void serialize(rapidjson::Value &val);
-    virtual void removeAll();
+    TInfo(void);
+    TInfo(const std::string& type, Instance ins = NULL);
+    TInfo(const TInfo &t);
+    ~TInfo(void);
+    TInfo& operator= (const TInfo &t);
+    std::string _class;
+    Instance _fun;
 };
 
 
-class TriggerObj : public CCObject
+class ObjectFactory
 {
+    typedef std::map<std::string, TInfo>  FactoryMap;
 public:
-    TriggerObj(void);
-    virtual ~TriggerObj(void);
-    virtual bool init();
-    static TriggerObj* create(void);
-    
-    virtual bool check();
-    virtual void done();
-    virtual void removeAll();
-    virtual void serialize(rapidjson::Value &val);
-  
+    ObjectFactory(void);
+    virtual ~ObjectFactory(void);
+public:
+    static ObjectFactory* sharedFactory();
+    void purgeFactory();
+public:
+    CCObject* createObject(const char *name);
+    void registerType(const TInfo &t);
+    void removeAll();
 private:
-    CCArray *_cons;
-    CCArray *_acts;
+    static ObjectFactory *_sharedFactory;
+    FactoryMap _typeMap;
 };
+
 
 NS_CC_EXT_END
 
 #endif
-
-
