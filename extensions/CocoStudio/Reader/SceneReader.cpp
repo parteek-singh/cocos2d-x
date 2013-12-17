@@ -162,6 +162,10 @@ NS_CC_EXT_BEGIN
                     }
                     
                     gb->addComponent(pRender);
+					if (_pListener && _pfnSelector)
+					{
+						(_pListener->*_pfnSelector)(pSprite, (void*)(&subDict));
+					}
                 }
                 else if(comName != NULL && strcmp(comName, "CCTMXTiledMap") == 0)
                 {
@@ -185,6 +189,10 @@ NS_CC_EXT_BEGIN
                         pRender->setName(pComName);
                     }
                     gb->addComponent(pRender);
+					if (_pListener && _pfnSelector)
+					{
+						(_pListener->*_pfnSelector)(pTmx, (void*)(&subDict));
+					}
                 }
                 else if(comName != NULL && strcmp(comName, "CCParticleSystemQuad") == 0)
                 {
@@ -211,6 +219,10 @@ NS_CC_EXT_BEGIN
                         pRender->setName(pComName);
                     }
                     gb->addComponent(pRender);
+					if (_pListener && _pfnSelector)
+					{
+						(_pListener->*_pfnSelector)(pParticle, (void*)(&subDict));
+					}
                 }
                 else if(comName != NULL && strcmp(comName, "CCArmature") == 0)
                 {
@@ -268,11 +280,14 @@ NS_CC_EXT_BEGIN
                         pRender->setName(pComName);
                     }
                     gb->addComponent(pRender);
-
 					const char *actionName = DICTOOL->getStringValue_json(subDict, "selectedactionname"); 
 					if (actionName != NULL && pAr->getAnimation() != NULL)
 					{
 						pAr->getAnimation()->play(actionName);
+					}
+					if (_pListener && _pfnSelector)
+					{
+						(_pListener->*_pfnSelector)(pAr, (void*)(&subDict));
 					}
                 }
                 else if(comName != NULL && strcmp(comName, "CCComAudio") == 0)
@@ -288,6 +303,10 @@ NS_CC_EXT_BEGIN
 					}
                     pAudio->preloadEffect(pPath.c_str());
                     gb->addComponent(pAudio);
+					if (_pListener && _pfnSelector)
+					{
+						(_pListener->*_pfnSelector)(pAudio, (void*)(&subDict));
+					}
                 }
                 else if(comName != NULL && strcmp(comName, "CCComAttribute") == 0)
                 {
@@ -309,6 +328,10 @@ NS_CC_EXT_BEGIN
 						continue;
 					}
                     gb->addComponent(pAttribute);
+					if (_pListener && _pfnSelector)
+					{
+						(_pListener->*_pfnSelector)(pAttribute, (void*)(&subDict));
+					}
                 }
                 else if (comName != NULL && strcmp(comName, "CCBackgroundAudio") == 0)
                 {
@@ -335,6 +358,10 @@ NS_CC_EXT_BEGIN
 					bool bLoop = (bool)(DICTOOL->getIntValue_json(subDict, "loop"));
 					pAudio->setLoop(bLoop);
                     gb->addComponent(pAudio);
+					if (_pListener && _pfnSelector)
+					{
+						(_pListener->*_pfnSelector)(pAudio, (void*)(&subDict));
+					}
 					pAudio->playBackgroundMusic(pPath.c_str(), bLoop);
                 }
 				else if(comName != NULL && strcmp(comName, "GUIComponent") == 0)
@@ -349,10 +376,10 @@ NS_CC_EXT_BEGIN
 					pRender->setName(pComName);
 					}
 					gb->addComponent(pRender);
-				}
-				if (_pListener && _pfnSelector)
-				{
-					(_pListener->*_pfnSelector)(gb, (void*)pComName);
+					if (_pListener && _pfnSelector)
+					{
+						(_pListener->*_pfnSelector)(pLayer, (void*)(&subDict));
+					}
 				}
             }
 
@@ -373,7 +400,7 @@ NS_CC_EXT_BEGIN
         return NULL;
     }
 
-	void SceneReader::setTarget(CCObject *rec, SEL_CallFuncND selector)
+	void SceneReader::setTarget(CCObject *rec, SEL_CallFuncOD selector)
 	{
 		_pListener = rec;
 		_pfnSelector = selector;
