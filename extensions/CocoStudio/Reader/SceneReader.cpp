@@ -27,9 +27,11 @@
 
 NS_CC_EXT_BEGIN
 
-	SceneReader* SceneReader::s_sharedReader = NULL;
+	SceneReader* SceneReader::_sharedReader = NULL;
 
     SceneReader::SceneReader()
+	:_pListener(NULL)
+	,_pfnSelector(NULL)
     {
 	}
 
@@ -39,7 +41,7 @@ NS_CC_EXT_BEGIN
 
 	const char* SceneReader::sceneReaderVersion()
 	{
-		return "1.0.0.0";
+		return "1.2.0.0";
 	}
 
     cocos2d::CCNode* SceneReader::createNodeWithSceneFile(const char* pszFileName)
@@ -348,6 +350,10 @@ NS_CC_EXT_BEGIN
 					}
 					gb->addComponent(pRender);
 				}
+				if (_pListener && _pfnSelector)
+				{
+					(_pListener->*_pfnSelector)(gb, (void*)pComName);
+				}
             }
 
             int length = DICTOOL->getArrayCount_json(root, "gameobjects");
@@ -367,6 +373,11 @@ NS_CC_EXT_BEGIN
         return NULL;
     }
 
+	void SceneReader::setTarget(CCObject *rec, SEL_CallFuncND selector)
+	{
+		_pListener = rec;
+		_pfnSelector = selector;
+	}
 
     void SceneReader::setPropertyFromJsonDict(const rapidjson::Value &root, cocos2d::CCNode *node)
     {
@@ -396,17 +407,18 @@ NS_CC_EXT_BEGIN
 
 	SceneReader* SceneReader::sharedSceneReader()
 	{
-		if (s_sharedReader == NULL)
+		if (_sharedReader == NULL)
 		{
-			s_sharedReader = new SceneReader();
+			_sharedReader = new SceneReader();
 		}
-		return s_sharedReader;
+		return _sharedReader;
 	}
 
     void SceneReader::purgeSceneReader()
     {
-		CC_SAFE_DELETE(s_sharedReader);
+		CC_SAFE_DELETE(_sharedReader);
 		cocos2d::extension::DictionaryHelper::shareHelper()->purgeDictionaryHelper();
+		_pfnSelector = NULL;
     }
 
 NS_CC_EXT_END
